@@ -7,9 +7,6 @@ public class Main {
         Scanner input = new Scanner(System.in);
         int minAge = 21;
 
-        String[][] layout = { {"Dices", "Blackjack"},
-                              {"Entrance", "Roulette"}
-        };
 
         System.out.println("A warm welcome to the KYH Casino!");
         System.out.println("Please answer these questions before you enter the casino floor");
@@ -29,6 +26,13 @@ public class Main {
         }else{
             System.out.println("Unfortunately you are too young to enter. You are welcome back in " + (minAge - age) + " years.");
         }
+
+        Casino.playBlackjack();
+
+        String[][] layout = { {"Dices", "Blackjack"},
+                              {"Entrance", "Roulette"}
+        };
+
 
     }
 }
