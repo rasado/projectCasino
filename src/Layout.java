@@ -9,13 +9,11 @@ public class Layout {
         description = inDescription;
     }
 
-    public String toString(){
-        String layoutString = get
-    }
 
 
-            String[][] layout = { {"Dices", "Blackjack"},
-                    {"Entrance", "Roulette"}};
+
+            String[][] layout = { {"Bar", "Craps"},
+                                  {"Entrance", "Blackjack"}};
 
 
 }

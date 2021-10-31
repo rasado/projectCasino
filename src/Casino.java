@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Casino {
@@ -5,6 +9,7 @@ public class Casino {
     int row;
     int col;
     Scanner input;
+    Layout[][] map;
 
 
     public static void intro() { //metod för första delen av spelet. här välkomnas spelaren och lite data om användaren lagras.
@@ -21,13 +26,13 @@ public class Casino {
 
         if (age >= minAge) { //loop kollar ifall åldern är större än eller samma som minimumåldern. printar i så fall ett välkomstmeddelande
             System.out.print("Welcome, " + name + ". Please enter the amount of money you would like to have at hand: ");
-            System.out.println("Your account have been charged with: $" + getCredit());
+            System.out.println("Your account have been charged with: $" + credit());
         } else {
             System.out.println("Unfortunately you are too young to enter. You are welcome back in " + (minAge - age) + " years.");
         }
     }
         //metod för att lagra hur mycket pengar användaren vill kunna spela för.
-    public static double getCredit(){
+    public static double credit(){
         Scanner input = new Scanner(System.in);
             return input.nextDouble();
     }
@@ -81,7 +86,7 @@ public class Casino {
             String[] commandParts = userInput();
             String command = commandParts[0];
 
-            if (command == "go to") { //vill ändra så att kommandot är go to istället för bara "go". hur?
+            if (command == "go") { //vill ändra så att kommandot är go to istället för bara "go". hur?
                 if (commandParts.length >= 2) {
                     updatePlayerPosition(commandParts[1]);
                     System.out.println("Going to the " + /* nånting */  " table.");
@@ -96,7 +101,58 @@ public class Casino {
                 running = false;
             }
         }
+    }
+    public static void save(int row, int col) {
+        File file = new File("./save/saved_game.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            String position = String.format("%d, %d", row, col);
+            fileWriter.write(position);
+            fileWriter.close();
+            System.out.println("Your game is saved");
+        } catch (IOException e) {
+            System.out.println("The game could not be saved.");
+        }
+    }
 
+    public static String load() {
+        File file = new File("./save/saved_game.txt");
+        try {
+            Scanner fileScanner = new Scanner(file);
+            String position = fileScanner.nextLine();
+            fileScanner.close();
+            return position;
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not load a saved game");
+        }
+        return null;
+    }
+
+    private void LoadSavedGame() {
+        String position = load();
+        if(position != null) {
+            String[] pos = position.split(", ");
+            int oldRow = row;
+            int oldCol = col;
+            row = Integer.parseInt(pos[0]);
+            col = Integer.parseInt(pos[1]);
+            if(row >= map.length) {
+                System.out.println("Error reading row coordinates from file. Are you cheating?");
+                row = oldRow;
+                col = oldCol;
+            }
+            else {
+                if(col >= map[row].length) {
+                    System.out.println("Error reading row coordinates from file. Are you cheating?");
+                    row = oldRow;
+                    col = oldCol;
+                }
+            }
+        }
+    }
+
+    public void quit(){
+        System.out.println("Thanks for playing the casino game. Hope to see you again soon.");
     }
 
 }
