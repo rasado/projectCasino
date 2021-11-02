@@ -5,7 +5,9 @@ public class Main {
         System.out.println("EXPLORING BRANCH");
 
         Casino casino = new Casino();
-        Casino.intro();
+        casino.intro();
+        casino.theGame();
+        casino.quit();
 
 
 
