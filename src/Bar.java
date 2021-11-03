@@ -1,19 +1,13 @@
 import java.util.Scanner;
 
-public class Bar{
+public class Bar {
 
-    double tip;
-    private static double PriceOfItem;
-    private static double orderTotal;
-    double mainOrder = 0.0;
-    int menuChoice;
     double cost;
     static boolean ordering = true;
     double totalSum;
-    //static int menuItem = 0;
     int choice;
-    String order;
     Scanner input = new Scanner(System.in);
+    //Casino casino = new Casino();
     Character character;
 
     public Bar(Character character) {
@@ -34,14 +28,12 @@ public class Bar{
             System.out.println("| 6. Finished the order            |");
             System.out.println("|__________________________________|");
             placingOrder();
+            } else if(input.nextLine().equalsIgnoreCase("no")){
+               // casino.mainMenu();
             }
-            else if(input.nextLine().equalsIgnoreCase("no")){
-
-            }
-            }
+    }
 
     public void placingOrder(){
-        //barMenu();
         while (ordering) { //loopenkörs så länge ordering är sann
             System.out.println(cost + " is taken from your credit.");
             choice = input.nextInt();
@@ -80,96 +72,28 @@ public class Bar{
         }
         System.out.println("We have withdrawn $" + totalSum + " from your total credit.");
         System.out.println("Your balance is: " + (character.wallet));
-
+        System.out.println();
+        System.out.println("Would you like your receipt? Y/N");
+        String answer = input.nextLine();
+        if (answer.equalsIgnoreCase("y")){
+            System.out.println("bombakvitto");
+        }
     }
     private void totalSum(double cost){
         this.totalSum += cost;
     }
 
-        /*
-    public void makingOrder(){ //lagrar beställningen från användaren
-        double orderTotal = 0;
-        int menuItem = 0;
-        int menuChoice;
-        Scanner input = new Scanner(System.in);
-        System.out.println("Welcome to the bar, would you like to see the menu?");
-        while (ordering){
-            barMenu();
-            menuChoice = input.nextInt();
-            switch (menuChoice){
-                case 1:
-                    menuItem = 1;
-                    orderTotal += order(menuItem);
-                    break;
-                case 2:
-                    menuItem = 2;
-                    orderTotal += order(menuItem);
-                    break;
-                case 3:
-                    menuItem = 3;
-                    orderTotal += order(menuItem);
-                    break;
-                case 4:
-                    menuItem = 4;
-                    orderTotal += order(menuItem);
-                    break;
-                case 5:
-                    menuItem = 5;
-                    orderTotal += order(menuItem);
-                    break;
-                case 6:
-                    finished (mainOrder);
-                    break;
-                default:
-                    System.out.println("Invalid input.");
-            }
+   /* public static void receipt(int cost){
+        File file = new File("./Text/receipt.txt");
+        try{
+            FileWriter fileWriter = new FileWriter(file);
+            String text = String.format("%d ", cost);
+            fileWriter.write(text);
+            fileWriter.close();
+            System.out.println("Your receipt is saved.");
+        } catch(IOException e){
+            System.out.println("Unfortunately the receipt machine just broke down.");
         }
-        System.out.println("The total is: $" + mainOrder);
-        //return mainOrder;
-    }
+    }          */
 
-    public static double quantity() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter quantity");
-        double quantity = input.nextDouble();
-        totalAmount(quantity, priceOfItem);
-        return quantity;
-    }
-
-
-    public double order(int menuItem){
-        if (menuItem == 1){ //draft beer
-            System.out.println("Good choice, you've ordered a draft beer.");
-            PriceOfItem = 5.50;
-        }
-        if (menuItem == 2){ //red wine
-            System.out.println("Great! A glass of red wine coming right up.");
-            PriceOfItem = 4.50;
-        }
-        if (menuItem == 3){ //white wine
-            System.out.println("Marvelous, a glass of chilled white wine will be with you shortly.");
-            PriceOfItem = 4.50;
-        }
-        if (menuItem == 4){ //cocktail
-            System.out.println("My personal favourite! Here's your cocktail my friend.");
-            PriceOfItem = 7.00;
-        }
-        if (menuItem == 5){ //non alch cocktail
-            System.out.println("Designated driver? I like it. Here's your drink.");
-            PriceOfItem = 4.50;
-        } return mainOrder;
-    }
-
-   public static double totalAmount(double quantity, double priceOfItem){
-        double totalAmount = quantity * priceOfItem;
-       System.out.println("Total amount is: $" + totalAmount);
-       mainOrder = totalAmount;
-
-    }
-
-    public static void finished(double orderTotal) {
-        ordering = false;
-        System.out.println("Thank you for stopping by, enjoy your drinks my friend.");
-    }
- */
 }

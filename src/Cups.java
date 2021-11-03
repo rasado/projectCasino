@@ -1,13 +1,12 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Cups {
+public class Cups{
 
-    boolean playing = true;
     Scanner input = new Scanner(System.in);
+    Scanner inputTwo = new Scanner(System.in);
     Character character;
     Random rndm = new Random();
-    Casino casino = new Casino();
 
     public Cups(Character character) {
         this.character = character;
@@ -15,10 +14,10 @@ public class Cups {
 
     public void cupsGame() {
 
-        System.out.println("Here your job is to guess where the Ace is hiding." +
-                        " Since the odds are against you the payout will be greater - 2.5x if you win.");
+        System.out.println("Here yur job is to guess where the Ace is hiding." +
+                " Since the odds are against you the payout will be greater - 2.5x if you win.");
+        System.out.println("Your credit is currently: " + character.wallet);
         System.out.print("Please place your bet: ");
-        System.out.println(character.getWallet());
         double bet = input.nextDouble();
         character.decreaseWallet(bet);
 
@@ -30,58 +29,49 @@ public class Cups {
         int guess = input.nextInt();
         int ball = 1 + rndm.nextInt(3);
 
-       // while (playing) {
-
-            if (guess == ball) {
-                System.out.println("You son of a bitch you did it! ");
-                character.increaseWallet((bet * 2.5));
-                if (guess == 1) {
-                    System.out.println("\tAA\t##\t##");
-                    System.out.println("\tAA\t##\t##");
-                    System.out.println("\t1\t2\t3");
-                }
-                if (guess == 2) {
-                    System.out.println("\t##\tAA\t##");
-                    System.out.println("\t##\tAA\t##");
-                    System.out.println("\t1\t2\t3");
-                } else {
-                    System.out.println("\t##\t##\tAA");
-                    System.out.println("\t##\t##\tAA");
-                    System.out.println("\t1\t2\t3");
-                }
+        if (guess == ball) {
+            System.out.println("You son of a bitch you did it! ");
+            character.increaseWallet((bet * 2.5));
+            if (guess == 1) {
+                System.out.println("\tAA\t##\t##");
+                System.out.println("\tAA\t##\t##");
+                System.out.println("\t1\t2\t3");
+            }
+            if (guess == 2) {
+                System.out.println("\t##\tAA\t##");
+                System.out.println("\t##\tAA\t##");
+                System.out.println("\t1\t2\t3");
             } else {
-                System.out.println("Bad luck Chuck. Your balance is now: " + character.wallet);
-               // character.decreaseWallet(bet);
+                System.out.println("\t##\t##\tAA");
+                System.out.println("\t##\t##\tAA");
+                System.out.println("\t1\t2\t3");
             }
+        }
 
-            if (guess != ball && ball == 2) {
-                System.out.println("\t##\tAA\t##");
-                System.out.println("\t##\tAA\t##");
-                System.out.println("\t1\t2\t3");
-            }
-            if (guess != ball && ball == 1) {
-                System.out.println("\tAA\t##\t##");
-                System.out.println("\tAA\t##\t##");
-                System.out.println("\t1\t2\t3");
-            }
-            if (guess != ball && ball == 3) {
-                System.out.println("\t##\t##\tAA");
-                System.out.println("\t##\t##\tAA");
-                System.out.println("\t1\t2\t3");
-            }
-       // }
+        if (guess != ball && ball == 2) {
+            System.out.println("Bad luck Chuck. It was under number 2");
+            System.out.println("\t##\tAA\t##");
+            System.out.println("\t##\tAA\t##");
+            System.out.println("\t1\t2\t3");
+        }
+        if (guess != ball && ball == 1) {
+            System.out.println("Bad luck Chuck. It was under number 1");
+            System.out.println("\tAA\t##\t##");
+            System.out.println("\tAA\t##\t##");
+            System.out.println("\t1\t2\t3");
+        }
+        if (guess != ball && ball == 3) {
+            System.out.println("Bad luck Chuck. It was under number 3");
+            System.out.println("\t##\t##\tAA");
+            System.out.println("\t##\t##\tAA");
+            System.out.println("\t1\t2\t3");
+        }
+
 
         System.out.println("Your credit is now: " + character.wallet + "\nWould you like to play again?");
-        if (input.nextLine().equalsIgnoreCase("yes")){
+        if (inputTwo.nextLine().equalsIgnoreCase("yes")) {
             cupsGame();
-        } else
-            casino.mainMenu();
         }
-        /*System.out.println("Would you like to play again?");
-        if (input.nextLine().equalsIgnoreCase("yes")){
-            playing = true;
-        }else {
-            playing = false;
-        }*/
+    }
 }
 

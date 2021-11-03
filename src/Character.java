@@ -1,6 +1,6 @@
 public class Character {
 
-    String name;
+    static String name;
     int age;
     double wallet;
 
@@ -15,6 +15,7 @@ public class Character {
     public void increaseWallet(double sum){
         this.wallet += sum;
     }
+
     public void decreaseWallet(double sum){
         this.wallet -= sum;
     }
