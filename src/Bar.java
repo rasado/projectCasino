@@ -33,14 +33,16 @@ public class Bar{
             System.out.println("| 5. Non-Alcoholic Cocktail $4.50  |");
             System.out.println("| 6. Finished the order            |");
             System.out.println("|__________________________________|");
+            placingOrder();
             }
             else if(input.nextLine().equalsIgnoreCase("no")){
+
             }
-            System.out.println("Fair enough. I will escort you to the dice table instead.");
-            }                                                                                    
+            }
+
     public void placingOrder(){
-        barMenu();
-        while (ordering) {
+        //barMenu();
+        while (ordering) { //loopenkörs så länge ordering är sann
             System.out.println(cost + " is taken from your credit.");
             choice = input.nextInt();
             switch (choice) {
@@ -77,13 +79,7 @@ public class Bar{
             }
         }
         System.out.println("We have withdrawn $" + totalSum + " from your total credit.");
-        System.out.println("Your new balance is: " + (character.wallet));
-
-
-
-       // System.out.println(credit);
-
-
+        System.out.println("Your balance is: " + (character.wallet));
 
     }
     private void totalSum(double cost){
