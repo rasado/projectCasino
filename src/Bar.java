@@ -83,19 +83,18 @@ public class Bar {
         System.out.println("Would you like your receipt? Y/N");
         String answer = inputTwo.nextLine();
         if (answer.equalsIgnoreCase("y")){
-            receipt(cost);
+            receipt(totalSum);
         }
     }
     private void totalSum(double cost){
         this.totalSum += cost;
     }
 
-   public static void receipt(double cost){
+   public void receipt(double cost){
         File file = new File("./Text/receipt.txt");
         try{
             FileWriter fileWriter = new FileWriter(file);
-            String text = String.format("d", cost);
-            fileWriter.write(text);
+            fileWriter.write("testatesta" + cost);
             fileWriter.close();
             System.out.println("Your receipt is saved.");
         } catch(IOException e){

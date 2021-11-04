@@ -33,7 +33,7 @@ public class Casino {
     }
 
     public void mainMenu(){
-            //while(running){
+            while(running){
             System.out.println("Where would you like to go?");
             System.out.println("1. The bar");
             System.out.println("2. The cups table");
@@ -45,11 +45,13 @@ public class Casino {
                 case 1 -> bar.barMenu();
                 case 2 -> cups.cupsGame();
                 case 3 -> dice.diceGame();
-                default -> quit();
+                default -> running = false;
+            }if (running == false){
+            quit();}
             }
     }
 
-    public void quit(){
+    public static void quit(){
         System.out.println("Thanks for playing the casino game. Hope to see you again soon.");
     }
 }

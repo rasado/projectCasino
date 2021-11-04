@@ -13,13 +13,13 @@ public class Dice {
     double bet;
 
 
-    public Dice(Character character){
+    public Dice(Character character) {
         this.character = character;
     }
 
-    public void diceGame(){ //själva spelmetoden för Dice-bordet i casinot
-        int dice1 = 1+ r.nextInt(6); //slumpar tärningarna med siffra från 1-6.
-        int dice2 = 1+ r.nextInt(6);
+    public void diceGame() { //själva spelmetoden för Dice-bordet i casinot
+        int dice1 = 1 + r.nextInt(6); //slumpar tärningarna med siffra från 1-6.
+        int dice2 = 1 + r.nextInt(6);
         playing = true;
         while (playing) { //playing körs så länge användaren fortsätter att svara ja på frågan om den vill fortsätta
             System.out.println("Take a guess if the second dice will be higher or lower than the first.");
@@ -51,14 +51,18 @@ public class Dice {
             }
 
             System.out.println("Your credit is now: " + character.wallet);
-            System.out.println("Would you like to play again?");
-            answer = inputTwo.nextLine();
-            if (answer.equalsIgnoreCase("no")){
-                System.out.println("Thanks for rolling the dice");
-
-            }
+            //if (character.walletEmpty){
+            Casino.quit();
+        }//else{
+        System.out.println("Would you like to play again?");
+        answer = inputTwo.nextLine();
+        if (answer.equalsIgnoreCase("yes")) {
+            diceGame();
         }
+        System.out.println("Thanks for rolling the dice with us.");
     }
+
 }
+
 
 
