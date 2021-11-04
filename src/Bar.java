@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Bar {
@@ -9,9 +11,9 @@ public class Bar {
     static boolean ordering = true;
     double totalSum;
     int choice;
+    Date todaysDate = Calendar.getInstance().getTime();
     Scanner input = new Scanner(System.in);
     Scanner inputTwo = new Scanner (System.in);
-    //Casino casino = new Casino();
     Character character;
 
     public Bar(Character character) {
@@ -19,7 +21,7 @@ public class Bar {
     }
 
     public void barMenu(){
-        System.out.println("Welcome to the bar. Would you like to see the menu?");
+        System.out.println("Welcome to the bar. Would you like to see the menu? Yes/no");
         if (input.nextLine().equalsIgnoreCase("yes")){
             System.out.println("____________________________________");
             System.out.println("|          KYH CASINO BAR          |");
@@ -32,8 +34,6 @@ public class Bar {
             System.out.println("| 6. Finished the order            |");
             System.out.println("|__________________________________|");
             placingOrder();
-            } else if(input.nextLine().equalsIgnoreCase("no")){
-               // casino.mainMenu();
             }
     }
 
@@ -76,7 +76,7 @@ public class Bar {
         }
         System.out.println("We have withdrawn $" + totalSum + " from your total credit.");
         System.out.println("Your balance is: " + (character.wallet));
-        if (character.wallet == 0){
+        if (character.wallet == 0){ //dödar programmet om wallet går ner till 0.
             character.walletEmpty();
         }
         System.out.println();
@@ -90,13 +90,23 @@ public class Bar {
         this.totalSum += cost;
     }
 
+    //skapar ett kvitto som lagras som egen textfil.
    public void receipt(double cost){
         File file = new File("./Text/receipt.txt");
         try{
             FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write("testatesta" + cost);
+            fileWriter.write("\t\tKYH CASINO\n");
+            fileWriter.write("\t" + todaysDate);
+            fileWriter.write(("\n======================================="));
+            fileWriter.write("\nBEVERAGES");
+            fileWriter.write("\n- - - - - -");
+            fileWriter.write("\n\n\n VAT 9%: $" + (cost * 0.09));
+            fileWriter.write("\n TOTAL AMOUNT: $" + cost);
+            fileWriter.write("\n\n=======================================");
             fileWriter.close();
+            System.out.println("= = = = = = = = = = = = = = = = = =");
             System.out.println("Your receipt is saved.");
+            System.out.println("= = = = = = = = = = = = = = = = = =");
         } catch(IOException e){
             System.out.println("Unfortunately the receipt machine just broke down.");
         }

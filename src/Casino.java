@@ -18,7 +18,7 @@ public class Casino {
         System.out.println("Please answer these questions before you enter the casino floor");
         System.out.print("What's your name? ");
         character.setName(input.nextLine());
-        System.out.print("How old are you? Remember you have to be at least 21 to gamble at our Casino :");
+        System.out.print("How old are you? Remember you have to be at least 21 to gamble at our Casino: ");
         character.setAge(input.nextInt()); //lagrar användarens ålder i age
 
         //loop kollar ifall åldern är större än eller samma som minimumåldern. printar i så fall ett välkomstmeddelande
@@ -28,10 +28,11 @@ public class Casino {
             System.out.println("Your account have been charged with: $" + character.getWallet());
         } else {
             System.out.println("Unfortunately you are too young to enter. You are welcome back in " + (minAge - character.getAge()) + " years.");
+            quit(); //dödar spelet när användaren inte är gammal nog.
         }
         for (int i = 0; i < 10; ++i) System.out.println(); //"clearar" consolen för snyggare program.
     }
-
+    //huvudmenyn som körs genom hela spelet. avslutar spelet när while loopen dödas.
     public void mainMenu(){
             while(running){
             System.out.println("Where would you like to go?");
@@ -46,12 +47,13 @@ public class Casino {
                 case 2 -> cups.cupsGame();
                 case 3 -> dice.diceGame();
                 default -> running = false;
-            }if (running == false){
+            }if (!running){
             quit();}
             }
     }
 
-    public static void quit(){
+    public void quit(){
+        running = false;
         System.out.println("Thanks for playing the casino game. Hope to see you again soon.");
     }
 }

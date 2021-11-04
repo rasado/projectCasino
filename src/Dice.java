@@ -8,7 +8,6 @@ public class Dice {
     Scanner inputTwo = new Scanner(System.in);
     Character character;
     boolean playing;
-    Casino casino;
     String answer;
     double bet;
 
@@ -51,18 +50,18 @@ public class Dice {
             }
 
             System.out.println("Your credit is now: " + character.wallet);
-            //if (character.walletEmpty){
-            Casino.quit();
-        }//else{
-        System.out.println("Would you like to play again?");
-        answer = inputTwo.nextLine();
-        if (answer.equalsIgnoreCase("yes")) {
-            diceGame();
+            if (character.wallet == 0) {
+                character.walletEmpty();
+            } else {
+                System.out.println("Would you like to play again?");
+                answer = inputTwo.nextLine();
+                if (answer.equalsIgnoreCase("yes")) {
+                    diceGame();
+                } else
+                    System.out.println("Thanks for rolling the dice with us.");
+            }
         }
-        System.out.println("Thanks for rolling the dice with us.");
     }
-
 }
-
 
 

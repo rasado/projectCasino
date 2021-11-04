@@ -23,16 +23,17 @@ public class Character {
 
     public void walletEmpty(){
         this.wallet = 0;
-        System.out.println("You are all out of cash.. Now get out of here!");
-        casino.quit();
+            System.out.println("You are all out of cash.. Now get out of here!");
+            casino.quit();
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public boolean setName(String name) {
         this.name = name;
+        return false;
     }
 
     public int getAge() {
