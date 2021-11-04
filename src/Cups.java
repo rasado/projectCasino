@@ -68,7 +68,11 @@ public class Cups{
         }
 
 
-        System.out.println("Your credit is now: " + character.wallet + "\nWould you like to play again?");
+        System.out.println("Your credit is now: " + character.wallet);
+        if (character.wallet == 0){
+           // Casino.quit();
+        }
+        System.out.println("Would you like to play again?");
         if (inputTwo.nextLine().equalsIgnoreCase("yes")) {
             cupsGame();
         }

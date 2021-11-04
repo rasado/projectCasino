@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Bar {
@@ -7,6 +10,7 @@ public class Bar {
     double totalSum;
     int choice;
     Scanner input = new Scanner(System.in);
+    Scanner inputTwo = new Scanner (System.in);
     //Casino casino = new Casino();
     Character character;
 
@@ -72,28 +76,31 @@ public class Bar {
         }
         System.out.println("We have withdrawn $" + totalSum + " from your total credit.");
         System.out.println("Your balance is: " + (character.wallet));
+        if (character.wallet == 0){
+            character.walletEmpty();
+        }
         System.out.println();
         System.out.println("Would you like your receipt? Y/N");
-        String answer = input.nextLine();
+        String answer = inputTwo.nextLine();
         if (answer.equalsIgnoreCase("y")){
-            System.out.println("bombakvitto");
+            receipt(cost);
         }
     }
     private void totalSum(double cost){
         this.totalSum += cost;
     }
 
-   /* public static void receipt(int cost){
+   public static void receipt(double cost){
         File file = new File("./Text/receipt.txt");
         try{
             FileWriter fileWriter = new FileWriter(file);
-            String text = String.format("%d ", cost);
+            String text = String.format("d", cost);
             fileWriter.write(text);
             fileWriter.close();
             System.out.println("Your receipt is saved.");
         } catch(IOException e){
             System.out.println("Unfortunately the receipt machine just broke down.");
         }
-    }          */
+    }
 
 }

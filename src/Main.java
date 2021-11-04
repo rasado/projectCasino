@@ -5,6 +5,7 @@ public class Main {
         Casino casino = new Casino();
         casino.intro();
         casino.mainMenu();
+        casino.quit();
 
 
     }

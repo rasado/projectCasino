@@ -3,6 +3,7 @@ public class Character {
     static String name;
     int age;
     double wallet;
+    Casino casino;
 
     public void setWallet(double wallet) {
         this.wallet = wallet;
@@ -18,6 +19,12 @@ public class Character {
 
     public void decreaseWallet(double sum){
         this.wallet -= sum;
+    }
+
+    public void walletEmpty(){
+        this.wallet = 0;
+        System.out.println("You are all out of cash.. Now get out of here!");
+        casino.quit();
     }
 
     public String getName() {

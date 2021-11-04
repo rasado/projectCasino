@@ -21,32 +21,34 @@ public class Casino {
         System.out.print("How old are you? Remember you have to be at least 21 to gamble at our Casino :");
         character.setAge(input.nextInt()); //lagrar användarens ålder i age
 
-        if (character.getAge() >= minAge) { //loop kollar ifall åldern är större än eller samma som minimumåldern. printar i så fall ett välkomstmeddelande
+        //loop kollar ifall åldern är större än eller samma som minimumåldern. printar i så fall ett välkomstmeddelande
+        if (character.getAge() >= minAge) {
             System.out.print("Welcome, " + character.getName() + ". Please enter the amount of money you would like to have at hand: ");
             character.setWallet(input.nextInt());
             System.out.println("Your account have been charged with: $" + character.getWallet());
         } else {
             System.out.println("Unfortunately you are too young to enter. You are welcome back in " + (minAge - character.getAge()) + " years.");
         }
-        for (int i = 0; i < 10; ++i) System.out.println();
+        for (int i = 0; i < 10; ++i) System.out.println(); //"clearar" consolen för snyggare program.
     }
 
     public void mainMenu(){
-        //while(running){
-        System.out.println("Where would you like to go?");
-        System.out.println("1. The bar");
-        System.out.println("2. The cups table");
-        System.out.println("3. The dice table");
-        System.out.println("4. Leave the game.");
+            //while(running){
+            System.out.println("Where would you like to go?");
+            System.out.println("1. The bar");
+            System.out.println("2. The cups table");
+            System.out.println("3. The dice table");
+            System.out.println("4. Leave the game.");
 
-        choice = input.nextInt();
-        switch (choice) {
-            case 1 -> bar.barMenu();
-            case 2 -> cups.cupsGame();
-            case 3 -> dice.diceGame();
-            default -> quit();
-        }
+            choice = input.nextInt();
+            switch (choice) {
+                case 1 -> bar.barMenu();
+                case 2 -> cups.cupsGame();
+                case 3 -> dice.diceGame();
+                default -> quit();
+            }
     }
+
     public void quit(){
         System.out.println("Thanks for playing the casino game. Hope to see you again soon.");
     }
